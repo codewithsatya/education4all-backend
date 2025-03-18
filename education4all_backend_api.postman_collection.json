@@ -1,0 +1,219 @@
+{
+	"info": {
+		"_postman_id": "education4all-backend-api",
+		"name": "Education4All Backend API",
+		"description": "Collection for Education4All Backend API endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"john.doe@example.com\",\n    \"password\": \"securepassword123\",\n    \"full_name\": \"John Doe\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/",
+							"host": ["{{base_url}}"],
+							"path": ["users"]
+						},
+						"description": "Create a new user"
+					}
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/users/",
+							"host": ["{{base_url}}"],
+							"path": ["users"]
+						},
+						"description": "Get all users"
+					}
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"john.doe@example.com\",\n    \"password\": \"securepassword123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/login/",
+							"host": ["{{base_url}}"],
+							"path": ["users", "login"]
+						},
+						"description": "Login as a user"
+					}
+				},
+				{
+					"name": "Get User by ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/users/1",
+							"host": ["{{base_url}}"],
+							"path": ["users", "1"]
+						},
+						"description": "Get user by ID"
+					}
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"john.updated@example.com\",\n    \"password\": \"newpassword123\",\n    \"full_name\": \"John Updated Doe\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/1",
+							"host": ["{{base_url}}"],
+							"path": ["users", "1"]
+						},
+						"description": "Update user by ID"
+					}
+				}
+			]
+		},
+		{
+			"name": "Tutors",
+			"item": [
+				{
+					"name": "Create Tutor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"jane.smith@example.com\",\n    \"password\": \"tutorpass123\",\n    \"full_name\": \"Jane Smith\",\n    \"subject\": \"Mathematics\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/tutors/",
+							"host": ["{{base_url}}"],
+							"path": ["tutors"]
+						},
+						"description": "Create a new tutor"
+					}
+				},
+				{
+					"name": "Get All Tutors",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/tutors/",
+							"host": ["{{base_url}}"],
+							"path": ["tutors"]
+						},
+						"description": "Get all tutors"
+					}
+				},
+				{
+					"name": "Login Tutor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"jane.smith@example.com\",\n    \"password\": \"tutorpass123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/tutors/login/",
+							"host": ["{{base_url}}"],
+							"path": ["tutors", "login"]
+						},
+						"description": "Login as a tutor"
+					}
+				},
+				{
+					"name": "Get Tutor by ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/tutors/1",
+							"host": ["{{base_url}}"],
+							"path": ["tutors", "1"]
+						},
+						"description": "Get tutor by ID"
+					}
+				},
+				{
+					"name": "Update Tutor",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"jane.updated@example.com\",\n    \"password\": \"newtutorpass123\",\n    \"full_name\": \"Jane Updated Smith\",\n    \"subject\": \"Advanced Mathematics\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/tutors/1",
+							"host": ["{{base_url}}"],
+							"path": ["tutors", "1"]
+						},
+						"description": "Update tutor by ID"
+					}
+				},
+				{
+					"name": "Delete Tutor",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{base_url}}/tutors/1",
+							"host": ["{{base_url}}"],
+							"path": ["tutors", "1"]
+						},
+						"description": "Delete tutor by ID"
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://education4all-backend.onrender.com",
+			"type": "string"
+		}
+	]
+} 
