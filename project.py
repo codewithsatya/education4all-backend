@@ -2,17 +2,14 @@ from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
 from typing import List, Optional
 from datetime import datetime
-from sqlalchemy import create_engine, Column, Integer, String, DateTime
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, Session
+from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy.orm import Session
+from database import Base, engine, get_db
 
 app = FastAPI()
 
-# Database setup
-SQLALCHEMY_DATABASE_URL = "sqlite:///./tutoring.db"
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-Base = declarative_base()
+# Create database tables
+Base.metadata.create_all(bind=engine)
 
 # Models
 class User(Base):
@@ -32,8 +29,6 @@ class Tutor(Base):
     subject = Column(String)
     created_at = Column(DateTime, default=datetime.utcnow)
 
-Base.metadata.create_all(bind=engine)
-
 # Schemas
 class UserBase(BaseModel):
     email: str
@@ -51,7 +46,7 @@ class UserResponse(UserBase):
     created_at: datetime
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class TutorBase(BaseModel):
     email: str
@@ -70,15 +65,7 @@ class TutorResponse(TutorBase):
     created_at: datetime
     
     class Config:
-        orm_mode = True
-
-# Dependency
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+        from_attributes = True
 
 # User endpoints
 @app.post("/users/", response_model=UserResponse)
