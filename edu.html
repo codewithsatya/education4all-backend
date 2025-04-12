@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Education Access Platform</title>
+</head>
+<body>
+    <h1>Educational Resources</h1>
+    <a href="{{ url_for('add_resource') }}">Add Resource</a>
+    <ul>
+        {% for resource in resources %}
+            <li>
+                <strong>{{ resource.title }}</strong> ({{ resource.resource_type }}) - 
+                <a href="{{ resource.url }}">{{ resource.url }}</a>
+                <a href="{{ url_for('delete_resource', resource_id=resource.id) }}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html> 

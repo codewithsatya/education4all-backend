@@ -8,13 +8,14 @@ interface Video {
   description: string;
   url: string;
   tutor_id: string;
+  thumbnail_url?: string; // Added optional thumbnail_url property
 }
 
 export function StudentDashboard() {
   const [videos, setVideos] = useState<Video[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  useEffect(() => { 
     fetchVideos();
   }, []);
 
@@ -45,9 +46,18 @@ export function StudentDashboard() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {videos.map((video) => (
+        console.log(video,"video"),
         <div key={video.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="aspect-video bg-gray-100 flex items-center justify-center">
-            <Play className="w-12 h-12 text-blue-500" />
+            {video.thumbnail_url ? (
+              <img
+                src={video.thumbnail_url}
+                alt={video.title}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <Play className="w-12 h-12 text-blue-500" />
+            )}
           </div>
           <div className="p-4">
             <h3 className="text-lg font-semibold text-gray-800 mb-2">{video.title}</h3>
